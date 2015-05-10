@@ -18,6 +18,8 @@ public:
 
 	Node* m_pHead;
 
+	int m_iTotalWordsCounter;
+
 public:
 	SList();
 	~SList();
@@ -26,6 +28,8 @@ public:
 	// SearchByBinarySearch
 
 	// Insertion sort를 사용하여 삽입
-	bool InsertionSort(string sWord);
+	void InsertionSort();
+	void DisPlayWords();
+	bool InsertToFirst(string sWord);
 };
 

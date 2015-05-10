@@ -1,34 +1,54 @@
 #include <fstream>
 #include <iostream>
+#include "SList.h"
+
 using namespace std;
 
 int main()
 {
 
-//	string str1 = "Hi";
-//	string str2 = "ai";
-	string str1 = "123";
-	string str2 = "21";
+	//string str1 = "Hi";
+	//string str2 = "ai";
+	//string str1 = "123";
+	//string str2 = "21";
 
-	bool r1;
+	//bool r1;
 
-	r1 = str1 > str2;
+	//r1 = str1 > str2;
 
-	cout << "result : " << r1 << endl << endl;
+	//cout << "result : " << r1 << endl << endl;
 
 
-	string str3 = "aaaaaaaa";
-	string str4 = "b";
+	//string str3 = "aaaaaaaa";
+	//string str4 = "b";
 
-	bool r2 = str3 < str4;
+	//bool r2 = str3 < str4;
 
-	cout << "result : " << r2 << endl << endl;
+	//cout << "result : " << r2 << endl << endl;
 
 	// 총 단어 갯수
 	// 같은 단어 갯수 
 	// 위의 두가지를 구함
 
+	SList s1;
 
+	//s1.InsertionSort("hihi");
+	//s1.InsertionSort("hihi");
+	//s1.InsertionSort("worlds");
+	//s1.InsertionSort("jaesik");
+	//s1.InsertionSort("jaesik");
+
+	s1.InsertToFirst("bb");
+	s1.InsertToFirst("aa");
+	s1.InsertToFirst("dd");
+	s1.InsertToFirst("cc");
+	s1.InsertToFirst("aa");
+
+	s1.DisPlayWords();
+
+	string some;
+	cin >> some;
+	
 
 
 
