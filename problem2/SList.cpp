@@ -144,7 +144,7 @@ void SList::InsertionSort()
 void SList::DisPlayWords()
 {
 	cout << "=======================================" << endl;
-	cout << "총 단어 갯수 : " << m_iTotalWordsCounter << endl;
+	cout << "총 단어 종류 : " << m_iTotalWordsCounter << endl;
 	cout << "---------------  단어들 ---------------" << endl;
 
 	if (m_pHead == NULL)
@@ -168,6 +168,9 @@ void SList::DisPlayWords()
 
 bool SList::InsertToFirst(string sWord)
 {
+	if (sWord == "")
+		return true;
+
 	// Total Count 증가
 	m_iTotalWordsCounter++;
 
@@ -200,4 +203,82 @@ bool SList::InsertToFirst(string sWord)
 	// InsertionSort를 이용하여 정렬
 	InsertionSort();
 	return true;
+}
+
+
+// binary search에서 (a0 + n) / 2 인 부분입니다.
+void* SList::MiddleNode(Node* startNode, Node* endNode)
+{
+	if (startNode == NULL)
+	{
+		// the link is empty
+		return NULL;
+	}
+	
+	// 예외처리
+	if (startNode == endNode)
+		return NULL;
+
+	Node* pSlowPos = startNode;
+	Node* pFastPos = startNode->node_pNext;
+
+	while (pFastPos != endNode)
+	{
+		pFastPos = pFastPos->node_pNext;
+
+		if (pFastPos != endNode)
+		{
+			pSlowPos = pSlowPos->node_pNext;
+			pFastPos = pFastPos->node_pNext;
+		}
+	}
+
+	return pSlowPos;
+}
+
+
+void* SList::BinarySearch(string sWord)
+{
+	Node* startNode = m_pHead;
+	Node* endNode = NULL;
+
+	do
+	{
+		Node* middle = (Node*)MiddleNode(startNode, endNode);
+
+		if (middle == NULL)
+		{
+			// 찾는 단어가 없습니다.
+			InsertToFirst(sWord);
+			return NULL;
+		}
+
+		// 결과 찾음
+		if (middle->node_sWord == sWord)
+		{
+			// 똑같은 단어가 나오면 카운터 증가
+			middle->node_iCounter++;
+			return middle;
+		}
+		else if (middle->node_sWord < sWord)
+		{
+			// middle부터 end까지 검색
+			startNode = middle->node_pNext;
+		}
+		else
+		{
+			// start부터 middle까지 검색
+			endNode = middle;
+		}
+	} while (endNode == NULL || endNode->node_pNext != startNode);
+
+	// 찾는 단어가 없습니다.
+	InsertToFirst(sWord);
+	return NULL;
+}
+
+
+void SList::execute(string sWord)
+{
+	BinarySearch(sWord);
 }

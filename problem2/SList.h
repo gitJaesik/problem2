@@ -31,5 +31,19 @@ public:
 	void InsertionSort();
 	void DisPlayWords();
 	bool InsertToFirst(string sWord);
+
+	//Node* MiddleNode(Node* startNode, Node* endNode);
+	void* MiddleNode(Node* startNode, Node* endNode);
+	void* BinarySearch(string sWord);
+
+	//void test(){
+	//	Node* pTempTest = (Node*)BinarySearch("aa");
+	//	if (pTempTest == NULL)
+	//		cout << "there are no data" << endl;
+	//	else
+	//		cout << "tested by debug" << endl;
+	//}
+
+	void execute(string sWord);
 };
 
